@@ -1,0 +1,7 @@
+---
+- username: john
+  email: john@example.com
+- username: ali
+  email: ali@example.com
+- username: mike
+  email: mike@example.com
