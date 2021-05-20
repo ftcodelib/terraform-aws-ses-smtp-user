@@ -40,24 +40,3 @@ resource "aws_ses_email_identity" "ses_smtp_user" {
   } : {}
   email = each.value.email
 }
-
-data "aws_region" "current" {}
-
-resource "null_resource" "ses_smtp_password_v4_decrypt" {
-
-  for_each = var.decrypt_ses_smtp_password ? {
-    for k, v in var.ses_smtp_user_list :
-    v.username => v
-  } : {}
-
-  triggers = {
-    aws_region           = data.aws_region.current.name
-    ses_smtp_password_v4 = aws_iam_access_key.ses_smtp_user_access_key[each.value.username].ses_smtp_password_v4
-  }
-
-  provisioner "local-exec" {
-    command = <<-EOT
-    python3 ${path.module}/scripts/smtp_credentials_generate.py ${self.triggers.ses_smtp_password_v4} ${self.triggers.aws_region}
-    EOT
-  }
-}
