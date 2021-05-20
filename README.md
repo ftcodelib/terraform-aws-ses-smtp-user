@@ -30,13 +30,12 @@ module "ses_smtp_user" {
 |------|-------------|------|---------|:--------:|
 |use\_name\_prefix|Whether to use name_prefix or fixed name|`bool`|`true`|no|
 |ses\_email\_address\_create|Whether to create the ses email addresses|`bool`|`true`|no|
-|decrypt\_ses_smtp\_password|Whether to decrypt the ses smtp password. WARNING: The output will be shown in terraform logs.|`bool`|`false`|no|
 
 ## Outputs
 
 | Name | Description |
 |---|---|
-|ses\_smtp\_user\_created\_list|Output of created user in list object format|
+|ses\_smtp\_user\_created\_list|Output of created user in list object format which includes ses_smtp_access_key_id & ses_smtp_password_v4|
 
 ## Authors
 
